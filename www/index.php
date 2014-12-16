@@ -1,4 +1,8 @@
-<?php include_once("config.php"); ?>
+<?php
+session_start();
+include_once("config.php");
+?>
+<?php $_SESSION['key'] = $_COOKIE['PHPSESSID']; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -40,6 +44,7 @@
                 <span style="padding:1px;">
 					<input id="tel" placeholder="Тел" type="text" size="40"/>
 				</span><br/>
+                <input id="key" type="hidden" value="<?php echo $_SESSION['key']; ?>"/>
                 <span><input type="button" value="Зареєструвати" onclick="newUser()"/></span>
         <div class="clear"></div>
 		</div>

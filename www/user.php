@@ -1,4 +1,21 @@
+<?php session_start(); ?>
 <?php include_once("config.php"); ?>
+<?php
+    if(isset($_GET['check'])){
+        $token = $db->query("SELECT `key`  FROM user WHERE `pass` = '".$_GET['check']."'");
+        $query = $token->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['key'] = $query[0]['key'];
+    }elseif(empty($_SESSION['key'])){
+        unset($_SESSION['key']);
+        header("Location: index.php");
+    }
+?>
+<?php
+    $token = $db->query("SELECT `key`, `name` FROM user WHERE `key` = '".$_SESSION['key']."'");
+    $query = $token->fetchAll(PDO::FETCH_ASSOC);
+    $user = $query[0]['name'];
+    $key = $query[0]['key'];
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,6 +29,7 @@
     <script type="text/javascript" src="js/script.js"></script>
 </head>
     <body>
+        <div style="float: right;">Вы зашли как: <?php echo $user; ?></div>
         <div>
         <div class="content_wrapper">
             <ul id="responds" style=" height: 500px; overflow: auto;" class="scroll-pane">

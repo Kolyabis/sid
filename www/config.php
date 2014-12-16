@@ -1,5 +1,5 @@
 <?php
-session_start(); /* Запускаем сессию */ 
+//session_start(); /* Запускаем сессию */
 ini_set('display_errors', 1);
 define('PS', PATH_SEPARATOR);
 define('DS', DIRECTORY_SEPARATOR);

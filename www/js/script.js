@@ -19,7 +19,7 @@ function checkUser(){
                     $("#newUser").slideDown(response);
                 }else if(response != ''){
                     var url = location.href;
-                    window.location.href = url+response+'.php';
+                    window.location.href = url+response+'.php?check='+$("#checkUser").val();
                 }
             },
             error:function (xhr, ajaxOptions, thrownError){
@@ -31,14 +31,14 @@ function checkUser(){
 /* Функция ajax добавление нового пользователя */
 function newUser(){
 	var valid = true;
-	if($("#login").val().length < 2){
+    if($("#login").val().length < 2){
 		$("#error").slideDown(function(){
 			$("#error").html("Pole ( login ) pusto!");			
 		});
 		$("#login").focus();
 		setTimeout(function() {
 			$("#error").slideUp();
-		}, 3000);
+		}, 5000);
 		return false;
 	}else if($("#edrpo").val().length < 7){
 		$("#error").slideDown(function(){
@@ -47,7 +47,7 @@ function newUser(){
 		$("#edrpo").focus();
 		setTimeout(function() {
 			$("#error").slideUp();
-		}, 3000);
+		}, 5000);
 		return false;
 	}else if($("#pass").val().length < 4){
 		$("#error").slideDown(function(){
@@ -56,7 +56,7 @@ function newUser(){
 		$("#pass").focus();
 		setTimeout(function() {
 			$("#error").slideUp();
-		}, 3000);
+		}, 5000);
 		return false;	
 	}else if($("#mail").val().length < 4){
 		$("#error").slideDown(function(){
@@ -65,7 +65,7 @@ function newUser(){
 		$("#mail").focus();
 		setTimeout(function() {
 			$("#error").slideUp();
-		}, 3000);
+		}, 5000);
 		return false;
 	}else if($("#tel").val().length < 4){
 		$("#error").slideDown(function(){
@@ -74,10 +74,10 @@ function newUser(){
 		$("#tel").focus();
 		setTimeout(function() {
 			$("#error").slideUp();
-		}, 3000);
+		}, 5000);
 		return false;
-	}	
-	var myData = "name="+$("#login").val()+"&edrpo="+$("#edrpo").val()+"&pass="+$("#pass").val()+"&mail="+$("#mail").val()+"&tel="+$("#tel").val();	
+	}
+	var myData = "key="+$("#key").val()+"&name="+$("#login").val()+"&edrpo="+$("#edrpo").val()+"&pass="+$("#pass").val()+"&mail="+$("#mail").val()+"&tel="+$("#tel").val();
 	jQuery.ajax({
             type: "POST", // HTTP метод  POST
             url: "class/ajaxController.php", //url-адрес, по которому будет отправлен запрос
@@ -92,7 +92,12 @@ function newUser(){
 				if(response != ''){
                     $("#ok").slideDown(function(){
 						$("#ok").html(response);
-					});					
+					});
+                    setTimeout(function() {
+                        $("#ok").slideUp();
+                    }, 5000);
+                    var url = location.href;
+                    window.location.href = url+'user.php';
                 }
             },
             error:function (xhr, ajaxOptions, thrownError){
