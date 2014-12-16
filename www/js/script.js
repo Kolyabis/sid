@@ -2,11 +2,11 @@
 function checkUser(){
     var valid = true;
     if($("#checkUser").val() === ""){
-        $("#newUser").fadeOut();
-        $("#ajaxError").fadeIn(); //плавное появление
+        $("#newUser").slideUp();
+        $("#ajaxError").slideDown(); //плавное появление
         return false; // не производить переход по ссылке
     }else{
-        $("#ajaxError").fadeOut();
+        $("#ajaxError").slideUp();
         var myData = "pass="+ $("#checkUser").val();
         jQuery.ajax({
             type: "POST", // HTTP метод  POST
@@ -16,7 +16,7 @@ function checkUser(){
             success:function(response){
                 //alert(response);
 				if(response === ''){
-                    $("#newUser").fadeIn(response);
+                    $("#newUser").slideDown(response);
                 }else if(response != ''){
                     var url = location.href;
                     window.location.href = url+response+'.php';
@@ -32,48 +32,48 @@ function checkUser(){
 function newUser(){
 	var valid = true;
 	if($("#login").val().length < 2){
-		$("#error").fadeIn(function(){
+		$("#error").slideDown(function(){
 			$("#error").html("Pole ( login ) pusto!");			
 		});
 		$("#login").focus();
 		setTimeout(function() {
-			$("#error").fadeOut();
+			$("#error").slideUp();
 		}, 3000);
 		return false;
 	}else if($("#edrpo").val().length < 7){
-		$("#error").fadeIn(function(){
+		$("#error").slideDown(function(){
 			$("#error").html("Pole ( edrpo ) pusto!");			
 		});
 		$("#edrpo").focus();
 		setTimeout(function() {
-			$("#error").fadeOut();
+			$("#error").slideUp();
 		}, 3000);
 		return false;
 	}else if($("#pass").val().length < 4){
-		$("#error").fadeIn(function(){
+		$("#error").slideDown(function(){
 			$("#error").html("Pole ( password ) pusto!");			
 		});
 		$("#pass").focus();
 		setTimeout(function() {
-			$("#error").fadeOut();
+			$("#error").slideUp();
 		}, 3000);
 		return false;	
 	}else if($("#mail").val().length < 4){
-		$("#error").fadeIn(function(){
+		$("#error").slideDown(function(){
 			$("#error").html("Pole ( mail ) pusto!");			
 		});
 		$("#mail").focus();
 		setTimeout(function() {
-			$("#error").fadeOut();
+			$("#error").slideUp();
 		}, 3000);
 		return false;
 	}else if($("#tel").val().length < 4){
-		$("#error").fadeIn(function(){
+		$("#error").slideDown(function(){
 			$("#error").html("Pole ( tel ) pusto!");			
 		});
 		$("#tel").focus();
 		setTimeout(function() {
-			$("#error").fadeOut();
+			$("#error").slideUp();
 		}, 3000);
 		return false;
 	}	
@@ -85,12 +85,12 @@ function newUser(){
             data:myData, //данные, которые будут отправлены на сервер (post переменные)
             success:function(response){				
 				if(response === ''){
-                    $("#error").fadeIn(function(){
+                    $("#error").slideDown(function(){
 						$("#error").html("Не удалось зарегистрировать пользователя!");
 					});
                 }
 				if(response != ''){
-                    $("#ok").fadeIn(function(){
+                    $("#ok").slideDown(function(){
 						$("#ok").html(response);
 					});					
                 }
