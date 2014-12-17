@@ -5,7 +5,8 @@
         $token = $db->query("SELECT `key`  FROM user WHERE `pass` = '".$_GET['check']."'");
         $query = $token->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['key'] = $query[0]['key'];
-    }elseif(empty($_SESSION['key'])){
+    }
+    if(empty($_SESSION['key'])){
         unset($_SESSION['key']);
         header("Location: index.php");
     }
