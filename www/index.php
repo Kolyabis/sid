@@ -2,7 +2,7 @@
 session_start();
 include_once("config.php");
 ?>
-<?php $_SESSION['key'] = $_COOKIE['PHPSESSID']; ?>
+<?php $_SESSION['key'] = md5(mt_rand(2, 10000)); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
