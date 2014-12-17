@@ -14,7 +14,6 @@ function checkUser(){
             dataType:"text", // Тип данных,  которые пришлет сервер в ответ на запрос ,например, HTML, json
             data:myData, //данные, которые будут отправлены на сервер (post переменные)
             success:function(response){
-                //alert(response);
 				if(response === ''){
                     $("#newUser").slideDown(response);
                 }else if(response != ''){
