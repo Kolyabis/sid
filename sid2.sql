@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1
--- Время создания: Дек 18 2014 г., 12:52
+-- Время создания: Дек 18 2014 г., 16:27
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.13
 
@@ -19,6 +19,33 @@ SET time_zone = "+00:00";
 --
 -- База данных: `sid2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `list`
+--
+
+CREATE TABLE IF NOT EXISTS `list` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id_user` int(10) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `key` varchar(50) NOT NULL,
+  `text` text NOT NULL,
+  `data` datetime NOT NULL,
+  `persona` varchar(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Дамп данных таблицы `list`
+--
+
+INSERT INTO `list` (`id`, `id_user`, `login`, `key`, `text`, `data`, `persona`) VALUES
+(1, 37, 'Александр', '9d752cb08ef466fc480fba981cfa44a1', 'Тестовый текст', '2014-12-18 14:23:00', 'user'),
+(2, 37, 'Александр', '9d752cb08ef466fc480fba981cfa44a1', 'Текст тестовый 2', '2014-12-18 14:23:00', 'user'),
+(3, 37, 'Александр', '9d752cb08ef466fc480fba981cfa44a1', 'ыва', '2014-12-18 16:22:45', 'user'),
+(4, 37, 'Александр', '9d752cb08ef466fc480fba981cfa44a1', 'ыва', '2014-12-18 16:23:05', 'user');
 
 -- --------------------------------------------------------
 
