@@ -17,7 +17,10 @@ include_once("config.php");
             <p id="pForm">
                 <span>
                     <span>
-                        <input id="checkUser" placeholder="Password" name="checkUser" type="text" size="40"/>
+                        <input id="login" placeholder="Login" name="login" type="text" size="20"/>
+                    </span>
+                    <span>
+                        <input id="pass" placeholder="Password" name="Pass" type="text" size="20"/>
                     </span>
                 </span>
                 <span>
@@ -25,12 +28,12 @@ include_once("config.php");
                 </span>
             </p>
         </div>
-        <div id="ajaxError" style="display: none;">Pole pustoe!</div>
+        <div id="ajaxError" style="display: none;"></div>
         <div class="clear"></div>        
         <div id="newUser" style="display: none;">
                 <p>Новий пользовател</p>
 				<span style="padding:1px;">
-					<input id="login" placeholder="Логін" type="text" size="40"/>
+					<input id="loginUser" placeholder="Логін" type="text" size="40"/>
 				</span><br/>
 				<span style="padding:1px;">
 					<input id="edrpo" placeholder="ЕДРПОУ" type="text" size="40"/>
