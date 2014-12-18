@@ -119,6 +119,30 @@ function newUser(){
             }
         });	
 }
+/* Функция отправки данных ajax и возврат результата */
+function goAjax(){
+    if($("#contentText").val()===""){
+        $("#errorList").slideDown(function(){
+            $("#errorList").html('Поле с сообщением пусто');
+        });
+        return false;
+    }else{
+        var myData = "txt="+ $("#contentText").val() +"&token="+ $("#token").val()+"&id="+ $("#idUser").val()+"&login="+ $("#login").val();
+        $.ajax({
+            type: "POST", // HTTP метод  POST
+            url: "class/ajaxController.php", //url-адрес, по которому будет отправлен запрос
+            dataType:"text", // Тип данных,  которые пришлет сервер в ответ на запрос ,например, HTML, json
+            data:myData, //данные, которые будут отправлены на сервер (post переменные)
+            success:function(response){
+                $("#responds").append(response);
+                $("#contentText").val(''); //очищаем текстовое поле после успешной вставки
+            },
+            error:function (xhr, ajaxOptions, thrownError){
+                alert(thrownError); //выводим ошибку
+            }
+        });
+    }
+}
 /* Выход с программы */
 function closeSid(){
     var url = location.href;
