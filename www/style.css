@@ -40,6 +40,17 @@
     color: dimgrey;
     border-radius: 5px;
 }
+#errorList{
+    max-width: 400px;
+    float: left;
+    background-color: #c48283;
+    border: solid 1px dimgrey;
+    margin-top: 15px;
+    padding: 5px;
+    text-align: center;
+    color: dimgrey;
+    border-radius: 5px;
+}
 #ok{
     max-width: 400px;
     margin-right: auto;
