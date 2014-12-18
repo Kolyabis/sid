@@ -22,8 +22,10 @@ class ajaxController{
 	}
 	/* Метод добовления нового пользователя */
 	public function insertUser($key, $name, $pass, $edrpo, $mail, $tel, $db){
-		$rezult = $db->exec("INSERT INTO user (`key`, `name`, `pass`, `edrpo`, `mail`, `tel`, `data`, `persona`) VALUES ('$key', '$name', '$pass', '$edrpo', '$mail', '$tel', NOW(), 'user')");		
-		if($rezult){			
+		$pass = md5($pass);
+       // echo("INSERT INTO user (`key`, `login`, `pass`, `edrpo`, `mail`, `tel`, `data`, `persona`) VALUES ('$key', '$name', '$pass', '$edrpo', '$mail', '$tel', NOW(), 'user')");
+        $rezult = $db->exec("INSERT INTO user (`key`, `login`, `pass`, `edrpo`, `mail`, `tel`, `data`, `persona`) VALUES ('$key', '$name', '$pass', '$edrpo', '$mail', '$tel', NOW(), 'user')");
+		if($rezult){
 			echo "Пользователь: (".$name.") успешно добавлен!";
 		}
 	}
@@ -32,8 +34,6 @@ $ajax = new ajaxController();
 	/*Проверяем существует ли пользователь или даем форму регистрации */
 	if(isset($_POST['login']) and isset($_POST['pass']) and !empty($_POST['login']) and !empty($_POST['pass'])){
 		$ajax->checkUser($_POST['login'], $_POST['pass'], $db);
-	}else{
-		unset($_POST['pass']);
 	}
 	/* Метод добовления нового пользователя */
 	if(isset($_POST['name']) and !empty($_POST['name'])){
