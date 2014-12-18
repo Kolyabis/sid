@@ -2,10 +2,11 @@
 include("../config.php");
 class ajaxController{
 	/*Проверяем существует ли пользователь или даем форму регистрации */
-	public function checkUser($pass, $db){		
-		if(!empty($pass)){
-        $pass = stripcslashes(strip_tags($pass));
-        $rezult = $db->query("SELECT * FROM user WHERE pass = '$pass'");
+	public function checkUser($login, $pass, $db){
+		if(!empty($login) and !empty($pass)){
+        $login = stripcslashes(strip_tags($login));
+        $pass = md5($pass);
+        $rezult = $db->query("SELECT * FROM user WHERE login = '$login' AND pass = '$pass'");
         $rez = $rezult->fetchAll(PDO::FETCH_ASSOC);
 			if($rez != null){
 				$cnt = count($rez);
@@ -16,8 +17,7 @@ class ajaxController{
 				}
 			}
 		}else{
-			echo "NET 1";
-			//unset($_POST['user']);
+			echo "Не возможно проверить введенные данные!";
 		}
 	}
 	/* Метод добовления нового пользователя */
@@ -30,8 +30,8 @@ class ajaxController{
 }
 $ajax = new ajaxController();
 	/*Проверяем существует ли пользователь или даем форму регистрации */
-	if(isset($_POST['pass']) and !empty($_POST['pass'])){
-		$ajax->checkUser($_POST['pass'], $db);
+	if(isset($_POST['login']) and isset($_POST['pass']) and !empty($_POST['login']) and !empty($_POST['pass'])){
+		$ajax->checkUser($_POST['login'], $_POST['pass'], $db);
 	}else{
 		unset($_POST['pass']);
 	}
