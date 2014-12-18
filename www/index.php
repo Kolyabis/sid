@@ -39,7 +39,7 @@ include_once("config.php");
 					<input id="edrpo" placeholder="ЕДРПОУ" type="text" size="40"/>
 				</span><br/>
 				<span style="padding:1px;">
-					<input id="pass" placeholder="Пароль" type="text" size="40"/>
+					<input id="newPass" placeholder="Пароль" type="text" size="40"/>
 				</span><br/>
                 <span style="padding:1px;">
 					<input id="mail" placeholder="E-mail" type="text" size="40"/>
