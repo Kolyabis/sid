@@ -56,11 +56,11 @@ function newUser(){
 			$("#error").slideUp();
 		}, 5000);
 		return false;
-	}else if($("#pass").val().length < 4){
+	}else if($("#newPass").val().length < 4){
 		$("#error").slideDown(function(){
 			$("#error").html("Pole ( password ) pusto!");			
 		});
-		$("#pass").focus();
+		$("#newPass").focus();
 		setTimeout(function() {
 			$("#error").slideUp();
 		}, 5000);
@@ -84,7 +84,7 @@ function newUser(){
 		}, 5000);
 		return false;
 	}
-	var myData = "key="+$("#key").val()+"&name="+$("#loginUser").val()+"&edrpo="+$("#edrpo").val()+"&pass="+$("#pass").val()+"&mail="+$("#mail").val()+"&tel="+$("#tel").val();
+	var myData = "key="+$("#key").val()+"&name="+$("#loginUser").val()+"&edrpo="+$("#edrpo").val()+"&pass="+$("#newPass").val()+"&mail="+$("#mail").val()+"&tel="+$("#tel").val();
 	jQuery.ajax({
             type: "POST", // HTTP метод  POST
             url: "class/ajaxController.php", //url-адрес, по которому будет отправлен запрос
@@ -95,8 +95,7 @@ function newUser(){
                     $("#error").slideDown(function(){
 						$("#error").html("Не удалось зарегистрировать пользователя!");
 					});
-                }
-				if(response != ''){
+                }else{
                     $("#ok").slideDown(function(){
 						$("#ok").html(response);
 					});
