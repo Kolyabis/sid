@@ -148,3 +148,5 @@ function closeSid(){
     var url = location.href;
     alert(url);
 }
+$(document).ready(function() {$("#responds").scrollTop(10000);});
+
