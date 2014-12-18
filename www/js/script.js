@@ -25,8 +25,12 @@ function checkUser(){
 				if(response === ''){
                     $("#newUser").slideDown(response);
                 }else if(response != ''){
+                    var login = $("#login").val();
+                    login = encodeURIComponent(login);
+                    var pass = $("#pass").val();
+                    pass = encodeURIComponent(pass);
                     var url = location.href;
-                    window.location.href = url+response+'.php';
+                    window.location.href = url+response+'.php?name='+login+'&pass='+pass;
                 }
             },
             error:function (xhr, ajaxOptions, thrownError){
@@ -92,22 +96,31 @@ function newUser(){
             data:myData, //данные, которые будут отправлены на сервер (post переменные)
             success:function(response){				
 				if(response === ''){
+                    alert(response);
                     $("#error").slideDown(function(){
 						$("#error").html("Не удалось зарегистрировать пользователя!");
 					});
                 }else{
+                    alert(response);
                     $("#ok").slideDown(function(){
 						$("#ok").html(response);
 					});
                     setTimeout(function() {
                         $("#ok").slideUp();
                     }, 5000);
-                    var url = location.href;
-                    window.location.href = url+'user.php';
+                    setInterval(function(){
+                        var url = location.href;
+                        window.location.href = url+'user.php?name='+$("#loginUser").val()+'&pass='+$("#newPass").val();
+                    }, 3000);
                 }
             },
             error:function (xhr, ajaxOptions, thrownError){
                 alert(thrownError); //выводим ошибку
             }
         });	
+}
+/* Выход с программы */
+function closeSid(){
+    var url = location.href;
+    alert(url);
 }
