@@ -64,6 +64,7 @@
                     }
                 ?>
                 </ul>
+                test
                 <div class="form_style">
                     <input type="hidden" value="1"/>
                     <input type="text" id="token" value="<?php echo $key; ?>"/>
