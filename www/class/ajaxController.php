@@ -23,7 +23,6 @@ class ajaxController{
 	/* Метод добовления нового пользователя */
 	public function insertUser($key, $name, $pass, $edrpo, $mail, $tel, $db){
 		$pass = md5($pass);
-       // echo("INSERT INTO user (`key`, `login`, `pass`, `edrpo`, `mail`, `tel`, `data`, `persona`) VALUES ('$key', '$name', '$pass', '$edrpo', '$mail', '$tel', NOW(), 'user')");
         $rezult = $db->exec("INSERT INTO user (`key`, `login`, `pass`, `edrpo`, `mail`, `tel`, `data`, `persona`) VALUES ('$key', '$name', '$pass', '$edrpo', '$mail', '$tel', NOW(), 'user')");
 		if($rezult){
 			echo "Пользователь: (".$name.") успешно добавлен!";
