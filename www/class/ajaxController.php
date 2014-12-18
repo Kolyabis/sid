@@ -32,7 +32,25 @@ class ajaxController{
     public function addListComent($txt, $token, $id, $login, $db){
         $txt = filter_var($txt);
         if($db->query("INSERT INTO list (`id_user`,`login`,`key`,`text`,`data`,`persona`) VALUES ($id,'$login','$token','$txt', NOW(), 'user')")){
-            echo("INSERT INTO list (`id_user`,`login`,`key`,`text`,`data`,`persona`)VALUES ($id,'$login','$token','$txt', NOW(), 'user')");
+            $my_id = $db->lastInsertId(); //Get ID of last inserted record from MySQL
+            $query = $db->query("SELECT * FROM list WHERE id = $my_id");
+            $rezult = $query->fetchAll(PDO::FETCH_ASSOC);
+            $cnt = count($rezult) - 1;
+            for($i = 0; $i<=$cnt; $i++){
+                $id_user = $rezult[$i]['id_user'];
+                echo '<li style="background-color: #EEE9E9; margin-right: 35px;" id="item_'.$rezult[$i]["id"].'">';
+                    echo '<div class="del_wrapper"><a href="#" class="del_button" id="del-'.$rezult[$i]["id"].'">';
+                        echo '<img src="images/icon_del.gif" border="0" />';
+                        echo '</a>';
+                    echo '</div>';
+                    echo '<span id="viewsCompany">Пользователь: <span>'.$rezult[$i]["login"].'</span><span style="float:right; margin-right: 15px;">'.$rezult[$i]["data"].'</span></span><br/><br/>';
+                    echo '<span>'.$rezult[$i]["text"].'</span>';
+                echo '</li>';
+            }
+            unset($db);
+        }else{
+            header('HTTP/1.1 500 Looks like mysql error, could not insert record!');
+            exit();
         }
     }
 }
