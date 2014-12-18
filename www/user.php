@@ -18,7 +18,6 @@
     $query = $token->fetchAll(PDO::FETCH_ASSOC);
     $user = $query[0]['login'];
     $key = $query[0]['key'];
-    echo $key;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -35,22 +34,22 @@
     <body>
         <div style="float: right;">Вы зашли как: <?php echo $user; ?><span><a href="#" onclick="closeSid()">Sing out</a></span></div>
         <div>
-        <div class="content_wrapper">
-            <ul id="responds" style=" height: 500px; overflow: auto;" class="scroll-pane">
-            <?php
-                  /*$rezult = $db->query("select l.*, a.id as idAdmin, a.name, a.sessiya, u.id as idUser, u.pidpriemstvo, u.session from list l, admin a, users u where u.session = l.sessiya and a.sessiya = l.sessiya");
-                    $query = $rezult->fetchAll(PDO::FETCH_ASSOC);
+            <div class="content_wrapper">
+                <ul id="responds" style=" height: 500px; overflow: auto;" class="scroll-pane">
+                <?php
+                    $queryList = $db->query("SELECT * FROM list WHERE `key` = '$key'");
+                    $query = $queryList->fetchAll(PDO::FETCH_ASSOC);
                     $cnt = count($query) - 1;
                     for($i = 0; $i<=$cnt; $i++){
-                        $idUser = $query[$i]['idUser'];
-                        if($query[$i]["id_admin"] != 0){
+                        $id_user = $query[$i]['id_user'];
+                        if($query[$i]['persona'] != 'user'){
                             echo '<li style="background-color: rgb(182, 232, 255); margin-left: 35px;" id="item_'.$query[$i]["id"].'">';
                                 echo '<div class="del_wrapper"><a href="#" class="del_button" id="del-'.$query[$i]["id"].'">';
                                     echo '<img src="images/icon_del.gif" border="0" />';
                                     echo '</a>';
                                 echo '</div>';
-                            echo '<span id="viewsCompany">'.$query[$i]["name"].'</span><br/>';
-                            echo '<span>'.$query[$i]["text"].'</span>';
+                            echo '<span id="viewsCompany">Администратор: <span>'.$query[$i]["login"].'</span><span style="float:right; margin-right: 15px;">'.$query[$i]["data"].'</span></span><br/>';
+                                echo '<span>'.$query[$i]["text"].'</span>';
                             echo '</li>';
                         }else{
                             echo '<li style="background-color: #EEE9E9; margin-right: 35px;" id="item_'.$query[$i]["id"].'">';
@@ -58,21 +57,23 @@
                                     echo '<img src="images/icon_del.gif" border="0" />';
                                     echo '</a>';
                                 echo '</div>';
-                            echo '<span id="viewsCompany">Найменування компанії: <span>'.$query[$i]["pidpriemstvo"].'</span><span style="float:right; margin-right: 15px;">'.$query[$i]["data"].'</span></span><br/><br/>';
-                            echo '<span>'.$query[$i]["text"].'</span>';
+                                echo '<span id="viewsCompany">Пользователь: <span>'.$query[$i]["login"].'</span><span style="float:right; margin-right: 15px;">'.$query[$i]["data"].'</span></span><br/>';
+                                echo '<span>'.$query[$i]["text"].'</span>';
                             echo '</li>';
                         }
-                    }*/
-            ?>
-            </ul>
-            <div class="form_style">
-                <input type="hidden" value="1"/>
-                <input type="hidden" id="token" value="<?php echo $_COOKIE['PHPSESSID']; ?>"/>
-                <input type="hidden" id="idUser" value="<?php echo $idUser; ?>"/>
-                <textarea name="content_txt" id="contentText" cols="61" rows="5"></textarea>
-                <button id="FormSubmit" onclick="goAjax()">ОТПРАВИТЬ</button>
+                    }
+                ?>
+                </ul>
+                <div class="form_style">
+                    <input type="hidden" value="1"/>
+                    <input type="text" id="token" value="<?php echo $key; ?>"/>
+                    <input type="text" id="idUser" value="<?php echo $id_user; ?>"/>
+                    <input type="text" id="login" value="<?php echo $user; ?>"/>
+                    <textarea name="content_txt" id="contentText" cols="61" rows="5"></textarea>
+                    <button id="FormSubmit" onclick="goAjax()">ОТПРАВИТЬ</button>
+                </div>
+                <div id="errorList" style="display: none;"></div>
             </div>
-        </div>
     </div>
     </body>
 </html>
