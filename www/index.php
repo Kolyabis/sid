@@ -20,7 +20,7 @@ include_once("config.php");
                         <input id="login" placeholder="Login" name="login" type="text" size="20"/>
                     </span>
                     <span>
-                        <input id="pass" placeholder="Password" name="Pass" type="text" size="20"/>
+                        <input id="pass" placeholder="Password" name="Pass" type="password" size="20"/>
                     </span>
                 </span>
                 <span>
