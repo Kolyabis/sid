@@ -1,8 +1,10 @@
 <?php session_start(); ?>
 <?php include_once("config.php"); ?>
 <?php
-    if(isset($_GET['check'])){
-        $token = $db->query("SELECT `key`  FROM user WHERE `pass` = '".$_GET['check']."'");
+    //echo $_GET['name']." - ".$_GET['pass'];
+    if(isset($_GET['name']) and isset($_GET['pass']) and !empty($_GET['name']) and !empty($_GET['pass'])){
+        $pass = md5($_GET['pass']);
+        $token = $db->query("SELECT `key` FROM user WHERE `login` = '".$_GET['name']."' AND `pass`= '$pass'");
         $query = $token->fetchAll(PDO::FETCH_ASSOC);
         $_SESSION['key'] = $query[0]['key'];
     }
@@ -12,9 +14,9 @@
     }
 ?>
 <?php
-    $token = $db->query("SELECT `key`, `name` FROM user WHERE `key` = '".$_SESSION['key']."'");
+    $token = $db->query("SELECT `key`, `login` FROM user WHERE `key` = '".$_SESSION['key']."'");
     $query = $token->fetchAll(PDO::FETCH_ASSOC);
-    $user = $query[0]['name'];
+    $user = $query[0]['login'];
     $key = $query[0]['key'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -30,7 +32,7 @@
     <script type="text/javascript" src="js/script.js"></script>
 </head>
     <body>
-        <div style="float: right;">Вы зашли как: <?php echo $user; ?></div>
+        <div style="float: right;">Вы зашли как: <?php echo $user; ?><span><a href="#" onclick="closeSid()">Sing out</span></p></div>
         <div>
         <div class="content_wrapper">
             <ul id="responds" style=" height: 500px; overflow: auto;" class="scroll-pane">
