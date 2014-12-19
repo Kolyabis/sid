@@ -11,10 +11,11 @@ include_once("config.php");
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
-</head>    
-	<body>	        
-		<div id="dviCenter">
-            <p id="pForm">
+</head>
+<body>
+ввввв
+<div id="dviCenter">
+    <p id="pForm">
                 <span>
                     <span>
                         <input id="login" placeholder="Login" name="login" type="text" size="20"/>
@@ -26,12 +27,12 @@ include_once("config.php");
                 <span>
                     <input type="button" value="Check user" onclick="checkUser()"/>
                 </span>
-            </p>
-        </div>
-        <div id="ajaxError" style="display: none;"></div>
-        <div class="clear"></div>        
-        <div id="newUser" style="display: none;">
-                <p>Новий пользовател</p>
+    </p>
+</div>
+<div id="ajaxError" style="display: none;"></div>
+<div class="clear"></div>
+<div id="newUser" style="display: none;">
+    <p>Новий пользовател</p>
 				<span style="padding:1px;">
 					<input id="loginUser" placeholder="Логін" type="text" size="40"/>
 				</span><br/>
@@ -47,12 +48,12 @@ include_once("config.php");
                 <span style="padding:1px;">
 					<input id="tel" placeholder="Тел" type="text" size="40"/>
 				</span><br/>
-                <input id="key" type="hidden" value="<?php echo $_SESSION['key']; ?>"/>
-                <span><input type="button" value="Зареєструвати" onclick="newUser()"/></span>
-        <div class="clear"></div>
-		</div>
-		<div id="error" style="display: none;"></div>
-		<div id="ok" style="display: none;"></div>
-        <div class="clear"></div>
-    </body>
+    <input id="key" type="hidden" value="<?php echo $_SESSION['key']; ?>"/>
+    <span><input type="button" value="Зареєструвати" onclick="newUser()"/></span>
+    <div class="clear"></div>
+</div>
+<div id="error" style="display: none;"></div>
+<div id="ok" style="display: none;"></div>
+<div class="clear"></div>
+</body>
 </html>
